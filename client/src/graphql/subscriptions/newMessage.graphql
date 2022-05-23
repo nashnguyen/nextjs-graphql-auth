@@ -1,0 +1,6 @@
+subscription NewMessage {
+  newMessage {
+    from
+    message
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "jsxSingleQuote": true,
+  "singleQuote": true,
+  "semi": true,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "tailwindConfig": "./tailwind.config.js"
+}
