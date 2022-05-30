@@ -1,6 +1,0 @@
-mutation CreateNewMessage($from: String, $message: String) {
-  createNewMessage(from: $from, message: $message) {
-    from
-    message
-  }
-}

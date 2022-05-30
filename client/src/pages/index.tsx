@@ -2,22 +2,35 @@ import type { ReactElement } from 'react';
 import type { NextPageWithLayout } from 'next';
 
 import { Layout } from '@features/shared';
-import { useUsersQuery } from '@graphql/generrated/graphql';
+import {
+  useUsersQuery,
+  useNewUserSubscription
+} from '@graphql/generrated/graphql';
 
 const Index: NextPageWithLayout = () => {
-  const [usersResult, _] = useUsersQuery();
-  const { data, fetching, error } = usersResult;
+  const [usersResult] = useUsersQuery();
+  const [newUserResult] = useNewUserSubscription();
 
-  if (fetching) return <h3>Loading ....</h3>;
-  if (error) return <p className='font-bold text-red-500'>{error.message}</p>;
+  if (usersResult.fetching || newUserResult.fetching)
+    return <h3>Loading ....</h3>;
+  if (usersResult.error || newUserResult.error)
+    return (
+      <p className='font-bold text-red-500'>
+        {usersResult.error?.message} {newUserResult.error?.message}
+      </p>
+    );
 
   return (
     <>
-      {data?.users?.map(item => (
+      {usersResult.data?.users?.map(item => (
         <span>
-          {item?.id} - {item?.username} <br/>
+          {item?.id} - {item?.username} <br />
         </span>
       ))}
+      <span>
+        {newUserResult.data?.newUser?.id} -
+        {newUserResult.data?.newUser?.username}
+      </span>
     </>
   );
 };
