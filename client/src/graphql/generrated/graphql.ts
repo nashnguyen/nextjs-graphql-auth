@@ -15,23 +15,10 @@ export type Scalars = {
   Float: number;
 };
 
-export type Message = {
-  __typename?: 'Message';
-  from: Scalars['String'];
-  message: Scalars['String'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
-  createNewMessage?: Maybe<Message>;
   signIn: UserMutationResponse;
   signUp: UserMutationResponse;
-};
-
-
-export type MutationCreateNewMessageArgs = {
-  from?: InputMaybe<Scalars['String']>;
-  message?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -46,7 +33,7 @@ export type MutationSignUpArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  greeting?: Maybe<Scalars['String']>;
+  users?: Maybe<Array<Maybe<User>>>;
 };
 
 export type SignInInput = {
@@ -61,7 +48,7 @@ export type SignUpInput = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  newMessage?: Maybe<Message>;
+  newUser?: Maybe<User>;
 };
 
 export type User = {
@@ -77,14 +64,6 @@ export type UserMutationResponse = {
   user: User;
 };
 
-export type CreateNewMessageMutationVariables = Exact<{
-  from?: InputMaybe<Scalars['String']>;
-  message?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type CreateNewMessageMutation = { __typename?: 'Mutation', createNewMessage?: { __typename?: 'Message', from: string, message: string } | null };
-
 export type SignInMutationVariables = Exact<{
   signInInput: SignInInput;
 }>;
@@ -99,29 +78,17 @@ export type SignUpMutationVariables = Exact<{
 
 export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'UserMutationResponse', accessToken: string, user: { __typename?: 'User', id: string, username: string } } };
 
-export type GreetingQueryVariables = Exact<{ [key: string]: never; }>;
+export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GreetingQuery = { __typename?: 'Query', greeting?: string | null };
+export type UsersQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: string, username: string } | null> | null };
 
-export type NewMessageSubscriptionVariables = Exact<{ [key: string]: never; }>;
-
-
-export type NewMessageSubscription = { __typename?: 'Subscription', newMessage?: { __typename?: 'Message', from: string, message: string } | null };
+export type NewUserSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
-export const CreateNewMessageDocument = gql`
-    mutation CreateNewMessage($from: String, $message: String) {
-  createNewMessage(from: $from, message: $message) {
-    from
-    message
-  }
-}
-    `;
+export type NewUserSubscription = { __typename?: 'Subscription', newUser?: { __typename?: 'User', id: string, username: string } | null };
 
-export function useCreateNewMessageMutation() {
-  return Urql.useMutation<CreateNewMessageMutation, CreateNewMessageMutationVariables>(CreateNewMessageDocument);
-};
+
 export const SignInDocument = gql`
     mutation SignIn($signInInput: SignInInput!) {
   signIn(signInInput: $signInInput) {
@@ -152,24 +119,27 @@ export const SignUpDocument = gql`
 export function useSignUpMutation() {
   return Urql.useMutation<SignUpMutation, SignUpMutationVariables>(SignUpDocument);
 };
-export const GreetingDocument = gql`
-    query Greeting {
-  greeting
-}
-    `;
-
-export function useGreetingQuery(options?: Omit<Urql.UseQueryArgs<GreetingQueryVariables>, 'query'>) {
-  return Urql.useQuery<GreetingQuery>({ query: GreetingDocument, ...options });
-};
-export const NewMessageDocument = gql`
-    subscription NewMessage {
-  newMessage {
-    from
-    message
+export const UsersDocument = gql`
+    query Users {
+  users {
+    id
+    username
   }
 }
     `;
 
-export function useNewMessageSubscription<TData = NewMessageSubscription>(options: Omit<Urql.UseSubscriptionArgs<NewMessageSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<NewMessageSubscription, TData>) {
-  return Urql.useSubscription<NewMessageSubscription, TData, NewMessageSubscriptionVariables>({ query: NewMessageDocument, ...options }, handler);
+export function useUsersQuery(options?: Omit<Urql.UseQueryArgs<UsersQueryVariables>, 'query'>) {
+  return Urql.useQuery<UsersQuery>({ query: UsersDocument, ...options });
+};
+export const NewUserDocument = gql`
+    subscription NewUser {
+  newUser {
+    id
+    username
+  }
+}
+    `;
+
+export function useNewUserSubscription<TData = NewUserSubscription>(options: Omit<Urql.UseSubscriptionArgs<NewUserSubscriptionVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandler<NewUserSubscription, TData>) {
+  return Urql.useSubscription<NewUserSubscription, TData, NewUserSubscriptionVariables>({ query: NewUserDocument, ...options }, handler);
 };

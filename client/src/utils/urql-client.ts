@@ -76,8 +76,10 @@ const urqlClientOption: NextUrqlClientConfig = (
       },
       getAuth: async () => {
         const cookies = parse(context?.req?.headers?.cookie || '');
+        const refreshToken =
+          cookies[process.env.REFRESH_TOKEN_COOKIE_NAME as string];
 
-        if (cookies[process.env.REFRESH_TOKEN_COOKIE_NAME as string]) {
+        if (!refreshToken) {
           const response = await fetch('http://localhost:4000/refresh_token', {
             credentials: 'include'
           });

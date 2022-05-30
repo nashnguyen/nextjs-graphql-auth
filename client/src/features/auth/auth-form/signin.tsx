@@ -19,7 +19,7 @@ const SignIn = () => {
 
     if (response.data) {
       setAccessToken(response.data.signIn.accessToken);
-      router.push('/greeting');
+      router.push('/');
     } else {
       if (response.error) setErrorMsg((response.error as Error).message);
     }

@@ -15,7 +15,7 @@ const Index: NextPageWithLayout = () => {
     <>
       {data?.users?.map(item => (
         <span>
-          {item?.id} - {item?.username}
+          {item?.id} - {item?.username} <br/>
         </span>
       ))}
     </>
