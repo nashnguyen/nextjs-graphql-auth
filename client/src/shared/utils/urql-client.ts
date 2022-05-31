@@ -13,7 +13,7 @@ import {
   subscriptionExchange
 } from 'urql';
 
-import { setAccessToken } from '@utils/token';
+import { setAccessToken } from './token';
 
 interface AuthState {
   accessToken?: string;

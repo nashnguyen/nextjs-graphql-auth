@@ -1,7 +1,7 @@
 import argon2 from 'argon2';
 import { arg, extendType, nonNull } from 'nexus';
 
-import isAuth from '@src/middleware/is-auth';
+import isAuth from '@src/middlewares/is-auth';
 import { createAccessToken, sendRefreshToken } from '@src/utils/token';
 import {
   SignInInput,
@@ -14,7 +14,7 @@ const Query = extendType({
   type: 'Query',
   definition(t) {
     t.list.field('users', {
-      type: User,
+      type: nonNull(User),
       resolve: async (_, __, context) => {
         const decodedUser = isAuth(context.req);
 
@@ -24,9 +24,9 @@ const Query = extendType({
           }
         });
 
-        if (existingUser) return await context.prisma.user.findMany();
+        if (!existingUser) throw new Error('Can not find user');
 
-        return null;
+        return await context.prisma.user.findMany();
       }
     });
   }

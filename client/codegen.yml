@@ -1,9 +1,14 @@
 overwrite: true
 schema: 'http://localhost:4000/graphql'
-documents: 'src/graphql/**/*.graphql'
+documents: 'src/**/*.graphql'
 generates:
-  src/graphql/generrated/graphql.ts:
+  src/shared/types/types.gen.ts:
+    - 'typescript'
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .gen.ts
+      baseTypesPath: shared/types/types.gen.ts
     plugins:
-      - 'typescript'
       - 'typescript-operations'
       - 'typescript-urql'

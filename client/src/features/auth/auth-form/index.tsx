@@ -2,11 +2,8 @@ import type { FormEvent } from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  useSignInMutation,
-  useSignUpMutation
-} from '@graphql/generrated/graphql';
-import { setAccessToken } from '@utils/token';
+import { setAccessToken } from 'shared/utils/token';
+import { useSignInMutation, useSignUpMutation } from './operations.gen';
 
 const AuthForm = () => {
   const [username, setUsername] = useState('');
