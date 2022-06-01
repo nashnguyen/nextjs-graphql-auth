@@ -30,7 +30,7 @@ export type MutationSignUpArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  users?: Maybe<Array<User>>;
+  users: Array<User>;
 };
 
 export type SignInInput = {
@@ -45,7 +45,7 @@ export type SignUpInput = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  newUser?: Maybe<User>;
+  newUser: User;
 };
 
 export type User = {

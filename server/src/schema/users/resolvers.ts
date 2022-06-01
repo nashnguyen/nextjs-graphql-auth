@@ -13,7 +13,7 @@ import {
 const Query = extendType({
   type: 'Query',
   definition(t) {
-    t.list.field('users', {
+    t.nonNull.list.field('users', {
       type: nonNull(User),
       resolve: async (_, __, context) => {
         const decodedUser = isAuth(context.req);
@@ -100,8 +100,8 @@ const Mutation = extendType({
 const Subscription = extendType({
   type: 'Subscription',
   definition(t) {
-    t.field('newUser', {
-      type: User,
+    t.nonNull.field('newUser', {
+      type: nonNull(User),
       subscribe: async (_, __, context) => {
         return context.pubsub.asyncIterator('newUser');
       },
