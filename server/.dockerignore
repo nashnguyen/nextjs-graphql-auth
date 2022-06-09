@@ -1,1 +1,4 @@
+Dockerfile
+.dockeringore
 node_modules
+.git
