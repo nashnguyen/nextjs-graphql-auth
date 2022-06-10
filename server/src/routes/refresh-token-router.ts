@@ -2,8 +2,8 @@ import express from 'express';
 import type { JwtPayload } from 'jsonwebtoken';
 import { verify } from 'jsonwebtoken';
 
-import prisma from '@src/utils/prisma';
-import { createAccessToken, sendRefreshToken } from '@src/utils/token';
+import prisma from '@utils/prisma';
+import { createAccessToken, sendRefreshToken } from '@utils/token';
 
 const router = express.Router();
 

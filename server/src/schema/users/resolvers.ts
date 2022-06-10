@@ -1,8 +1,8 @@
 import argon2 from 'argon2';
 import { arg, extendType, nonNull } from 'nexus';
 
-import isAuth from '@src/middlewares/is-auth';
-import { createAccessToken, sendRefreshToken } from '@src/utils/token';
+import isAuth from '@middlewares/is-auth';
+import { createAccessToken, sendRefreshToken } from '@utils/token';
 import {
   SignInInput,
   SignUpInput,

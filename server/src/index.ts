@@ -1,5 +1,3 @@
-import 'module-alias/register';
-
 import {
   ApolloServerPluginDrainHttpServer,
   ApolloServerPluginLandingPageGraphQLPlayground
@@ -12,10 +10,10 @@ import { useServer } from 'graphql-ws/lib/use/ws';
 import { createServer } from 'http';
 import { WebSocketServer } from 'ws';
 
-import refreshTokenRouter from '@src/routes/refresh-token-router';
-import schema from '@src/schema';
-import prisma from '@src/utils/prisma';
-import pubsub from '@src/utils/pubsub';
+import refreshTokenRouter from '@routes/refresh-token-router';
+import schema from '@/schema';
+import prisma from '@utils/prisma';
+import pubsub from '@utils/pubsub';
 
 const startServer = async () => {
   // Create an Express app

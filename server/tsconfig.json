@@ -21,9 +21,13 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@src/*": ["./src/*"]
+      "@/*": ["*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@routes/*": ["routes/*"],
+      "@schema/*": ["schema/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "exclude": ["node_modules"],

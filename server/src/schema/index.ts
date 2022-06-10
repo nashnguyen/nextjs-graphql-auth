@@ -5,7 +5,7 @@ import * as users from './users';
 const schema = makeSchema({
   types: [users],
   contextType: {
-    module: require.resolve('@src/utils/prisma'),
+    module: '@utils/prisma',
     export: 'Context'
   },
   sourceTypes: {
