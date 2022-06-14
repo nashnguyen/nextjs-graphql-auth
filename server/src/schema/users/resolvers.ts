@@ -60,6 +60,8 @@ const Mutation = extendType({
 
         context.pubsub.publish('newUser', newUser);
 
+        sendRefreshToken(context.res, newUser);
+
         return { user: newUser, accessToken: createAccessToken(newUser) };
       }
     });
