@@ -1,6 +1,7 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import type { FunctionComponent } from 'react';
+import { useEffect, useState } from 'react';
 
-import { useUsersQuery, useNewUserSubscription } from './operations.gen';
+import { useNewUserSubscription, useUsersQuery } from './operations.gen';
 
 const UserList: FunctionComponent = () => {
   const [users, setUsers] =

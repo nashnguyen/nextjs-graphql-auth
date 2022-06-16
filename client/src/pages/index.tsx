@@ -2,8 +2,8 @@ import type { ReactElement } from 'react';
 
 import type { NextPageWithLayout } from 'next';
 
-import Layout from 'shared/layout';
-import UserList from 'features/user/user-list';
+import Layout from '@shared/layout';
+import { UserList } from '@features/user';
 
 const Index: NextPageWithLayout = () => {
   return <UserList />;

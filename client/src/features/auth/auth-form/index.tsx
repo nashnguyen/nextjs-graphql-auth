@@ -2,7 +2,7 @@ import type { FormEvent } from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { setAccessToken } from 'shared/utils/token';
+import { setAccessToken } from '@shared/utils/token';
 import { useSignInMutation, useSignUpMutation } from './operations.gen';
 
 const AuthForm = () => {

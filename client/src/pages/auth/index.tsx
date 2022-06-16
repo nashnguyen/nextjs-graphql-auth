@@ -1,8 +1,8 @@
 import type { NextPageWithLayout } from 'next';
 import type { ReactElement } from 'react';
 
-import { AuthForm, AuthLayout } from 'features/auth';
-import Layout from 'shared/layout';
+import { AuthForm, AuthLayout } from '@features/auth';
+import Layout from '@shared/layout';
 
 const Auth: NextPageWithLayout = () => {
   return <AuthForm />;
