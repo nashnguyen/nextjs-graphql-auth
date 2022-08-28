@@ -3,11 +3,9 @@
 # dependencies
 /node_modules
 
-# testing
-/coverage
-
 # production
 /build
+/dist
 
 # debug
 npm-debug.log*
@@ -17,6 +15,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
